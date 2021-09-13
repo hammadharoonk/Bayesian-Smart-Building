@@ -40,3 +40,42 @@ The BN can be used to:
 **Manual Control (MC):** Employees may panic at seeing extra faces so they are given the option to manually override the system and switch on the ventilation... however, the manual override button is placed at the opposite end of the compound as a deterrence, so people only press it around 60% of the time when they see a lot of people, or only 20% when there is no overcrowding.
 
 **Ventilators Activated (VA):** Conditioned on sensors (SA) and manual control (MC), the ventilation has an almost foolproof 99% chance of being switched on when both SA and MC are activated. This goes down to 90% with only sensors due to potential issues in wireless system, or 80% with only manual control (since the building manager may choose to disable the manual control if people use it too much). With no activation, it only has a very small 1% chance of being activated.
+
+
+## Scenario 1)
+**tracking the activation of ventilation systems based on evidence of no-deadline period, overcrowding, and a series of unactivated sensors, untouched manual control, and a combination of both:**
+
+![alt text](https://github.com/hammadharoonk/bayesiansmartbuilding/blob/main/scenario_1.jpg?raw=true)
+
+In 1A, we can see that even if the sensors are not activated due to possible technical fault, the employees will most probably switch on the manual control if they see overcrowding.
+
+In 1B, we can see that the sensors will in all likelihood activate when overcrowding is perceived, in which case the manual control won't be necessary.
+
+In 1C, we can see that if the sensors and manual control are both not activated, the ventilation system will not activate, as expected, since it is only conditioned on those two variables.
+
+## Scenario 2)
+**analyzing the timings and durations of periods of overcrowding:**
+
+The BN may help to provide information about periods of overcrowding, based on energy data from the ventilation system. Using cameras in the building to ensure no tampering with the sensors, the evidence is given that there is no human intervention, and the evidence of prior ventilation system is usage can be gathered from energy data. The BN then shows that overcrowding is probable at those times.
+
+![alt text](https://github.com/hammadharoonk/bayesiansmartbuilding/blob/main/scenario_2.jpg?raw=true)
+
+## Scenario 3)
+**predicting the chances of employees mishandling the sensors:**
+
+The building manager observes that the ventilation system is activated, however it is not one of the deadline periods of the year. Checking into the system, they see that the manual override is also untouched. This leaves two possibilities: impromptu overcrowding that activated the sensors, or human intervention... Suspicious of the latter, they may input the evidence into the BN only to confirm their suspicions.
+
+![alt text](https://github.com/hammadharoonk/bayesiansmartbuilding/blob/main/scenario_3.jpg?raw=true)
+
+
+##Conditional Independencies
+
+1) If overcrowding (O) is observed, this means that manual control (MC) is conditionally independent of deadline period (DP), since O being observed blocks the pat between DP and MC.
+
+2) if Manual Control (MC) is observed, Overcrowding (O) is conditionally independent from Human Intervention (HI). MC blocks the path from O-MC-VA, so even though VA-SA-HI is active, the first triple is inactive which blocks the whole path.
+
+3) If Sensors Activated (SA) and Manual Control (MC) are both observed, that means Ventilation Activated is conditionally independent from Overcrowding (O).
+
+4) If Overcrowding (O) and Sensors Activated (SA) is observed, then Manual Control (MC) is conditionally independent from Human Intervention (HI).
+
+5) With no evidence, Deadline Period (DP) and Human Intervention (HI) are conditionally independent, due to the V structure at SA and VA.

@@ -68,7 +68,7 @@ The building manager observes that the ventilation system is activated, however 
 ![alt text](https://github.com/hammadharoonk/bayesiansmartbuilding/blob/main/scenario_3.jpg?raw=true)
 
 
-##Conditional Independencies
+## Conditional Independencies
 
 1) If overcrowding (O) is observed, this means that manual control (MC) is conditionally independent of deadline period (DP), since O being observed blocks the pat between DP and MC.
 
